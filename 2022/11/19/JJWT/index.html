@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="灯子的流浪秃球计划">
-    <meta name="description" content="
-dawfawfawfawfawf
-
-">
+    <meta name="keywords" content="JJWT-token生成, 灯子的流浪秃球计划">
+    <meta name="description" content="一.作用1.授权： 这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单一登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用
+2.支持跨域访问:C">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +14,7 @@ dawfawfawfawfawf
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>灯子的流浪秃球计划</title>
+    <title>JJWT-token生成 | 灯子的流浪秃球计划</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -286,13 +284,13 @@ dawfawfawfawfawf
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        
+                        JJWT-token生成
                     </div>
                 </div>
             </div>
@@ -382,9 +380,17 @@ dawfawfawfawfawf
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/JJWT/" target="_blank">
+                                <span class="chip bg-color">JJWT</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%89%B4%E6%9D%83/" target="_blank">
+                                <span class="chip bg-color">鉴权</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -395,7 +401,7 @@ dawfawfawfawfawf
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-11-18
+                    2022-11-19
                 </div>
 
                 
@@ -411,8 +417,64 @@ dawfawfawfawfawf
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/images/%E6%B5%8B%E8%AF%95.assets/image-20221118170154515.png" alt="image-20221118170154515"></p>
-<pre class=" language-java"><code class="language-java">dawfawfawfawfawf
+                <h2 id="一-作用"><a href="#一-作用" class="headerlink" title="一.作用"></a>一.作用</h2><p>1.<strong>授权</strong>： 这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单一登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用</p>
+<p>2.<strong>支持跨域访问</strong>:Cookie是不允许垮域访问的，这一点对Token机制是不存在的，前提是传输的用户认证信息通过HTTP头传输.</p>
+<p>3.**去耦:**不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可</p>
+<h2 id="二-组成"><a href="#二-组成" class="headerlink" title="二.组成"></a>二.组成</h2><p>一个JWT实际上就是一个字符串，它由三部分组成：头部、载荷与签名。格式为： XXXX.XXXX.XXXX</p>
+<h5 id="2-1头部-header-用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象"><a href="#2-1头部-header-用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象" class="headerlink" title="2.1头部(header)用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象"></a>2.1头部(header)用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象</h5><blockquote>
+<pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"typ"</span><span class="token operator">:</span><span class="token string">"JWT"</span><span class="token punctuation">,</span><span class="token property">"alg"</span><span class="token operator">:</span><span class="token string">"HS256"</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+</blockquote>
+<p>​				使用Base64编码把JSON对象转化成由符号组成的字符串</p>
+<blockquote>
+<p>Base64编码是一种基于64个字符(52个大小字母+10个位数数字+加号+除号)表示二进制数据的表示方法。</p>
+<p>由于2的6次方等于64，所以用6比特表示一个单元，三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。空余的高位用0填充</p>
+</blockquote>
+<h5 id="2-2载荷-payload-存放有效信息的地方"><a href="#2-2载荷-payload-存放有效信息的地方" class="headerlink" title="2.2载荷(payload):存放有效信息的地方"></a>2.2载荷(payload):存放有效信息的地方</h5><blockquote>
+<p>​	标准中注册的声明（建议但不强制使用）</p>
+<pre><code>iss: jwt签发者
+sub: jwt所面向的用户
+aud: 接收jwt的一方
+exp: jwt的过期时间，这个过期时间必须要大于签发时间
+nbf: 定义在什么时间之前，该jwt都是不可用的.
+iat: jwt的签发时间
+jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。
+</code></pre>
+</blockquote>
+<blockquote>
+<p>​	公共的声明可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息。但不建议添加敏感信息，因为该部分在客户端可解密</p>
+</blockquote>
+<h5 id="2-3-签证（signature）"><a href="#2-3-签证（signature）" class="headerlink" title="2.3 签证（signature）"></a>2.3 签证（signature）</h5><p>​		该部分由header+payload+密钥（自定义）通过header中声明的加密方式进行加密后生成的签名组成</p>
+<h2 id="三-JJWT"><a href="#三-JJWT" class="headerlink" title="三.JJWT"></a>三.JJWT</h2><p>它是为了更友好在JVM上使用JWT，是基于JWT, JWS, JWE, JWK框架的java实现。</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>io.jsonwebtoken<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jjwt<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//私钥 / 生成签名的时候使用的秘钥secret，一般可以从本地配置文件中读取，切记这个秘钥不能外露，只在服务端使用，在任何场景都不应该流露出去</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> String tokenSignKey <span class="token operator">=</span> <span class="token string">"123456"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">createToken</span><span class="token punctuation">(</span>Long userId<span class="token punctuation">,</span> String userName<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    String token <span class="token operator">=</span> Jwts<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">//设置签名（由自定义的密钥加密生成，前一个参数为加密密钥的算法）</span>
+        <span class="token punctuation">.</span><span class="token function">signWith</span><span class="token punctuation">(</span>SignatureAlgorithm<span class="token punctuation">.</span>HS512<span class="token punctuation">,</span> tokenSignKey<span class="token punctuation">)</span> 
+        <span class="token punctuation">.</span><span class="token function">compressWith</span><span class="token punctuation">(</span>CompressionCodecs<span class="token punctuation">.</span>GZIP<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//设置jwt的类型</span>
+        <span class="token punctuation">.</span><span class="token function">setSubject</span><span class="token punctuation">(</span><span class="token string">"YYGH-USER"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">//设置面向的用户</span>
+        <span class="token comment" spellcheck="true">//设置过期时间,参数为一个Date对象</span>
+        <span class="token punctuation">.</span><span class="token function">setExpiration</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> tokenExpiration<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+        <span class="token punctuation">.</span><span class="token function">claim</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">,</span> userId<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//用户相关信息的声明</span>
+        <span class="token punctuation">.</span><span class="token function">claim</span><span class="token punctuation">(</span><span class="token string">"userName"</span><span class="token punctuation">,</span> userName<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">compact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//开始压缩为xxxxx.yyyyy.zzzzz 格式的jwt token</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 根据token 获取userId</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> Long <span class="token function">getUserId</span><span class="token punctuation">(</span>String token<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>StringUtils<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    Jws<span class="token operator">&lt;</span>Claims<span class="token operator">></span> claimsJws <span class="token operator">=</span> Jwts<span class="token punctuation">.</span><span class="token function">parser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setSigningKey</span><span class="token punctuation">(</span>tokenSignKey<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parseClaimsJws</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Claims claims <span class="token operator">=</span> claimsJws<span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Integer userId <span class="token operator">=</span> <span class="token punctuation">(</span>Integer<span class="token punctuation">)</span>claims<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> userId<span class="token punctuation">.</span><span class="token function">longValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 
             </div>
@@ -437,7 +499,7 @@ dawfawfawfawfawf
                     </span>
                     <a href="http://example.com" class="b-link-green">灯子的流浪秃球计划</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2022/11/18/%E6%B5%8B%E8%AF%95/" class="b-link-green"></a>
+                    <a href="/2022/11/19/JJWT/" class="b-link-green">JJWT-token生成</a>
                 </p>
             </div>
         </div>
@@ -462,17 +524,19 @@ dawfawfawfawfawf
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/11/19/%E9%A1%B9%E7%9B%AE%E6%B3%A8%E6%84%8F%E7%82%B92/">
+                <a href="/2022/11/19/Spring%20Cache+Redis%20%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="缓存数据">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">缓存数据</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"></div>
+                    <div class="summary">一.作用Spring Cache 是一个非常优秀的缓存组件。自Spring 3.1起，提供了类似于@Transactional注解事务的注解Cache支持，且提供了Cache抽象，方便切换各种底层Cache（如：Redis）
+
+Spring</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-19
@@ -486,6 +550,22 @@ dawfawfawfawfawf
                     </div>
                 </div>
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/" target="_blank">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Springboot/" target="_blank">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                    <a href="/tags/Redis/" target="_blank">
+                        <span class="chip bg-color">Redis</span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
@@ -495,7 +575,7 @@ dawfawfawfawfawf
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/18/%E6%95%99%E7%A8%8B/">
+                <a href="/2022/11/19/%E9%A1%B9%E7%9B%AE%E6%B3%A8%E6%84%8F%E7%82%B92/">
                     <div class="card-image">
                         
                         
@@ -505,11 +585,10 @@ dawfawfawfawfawf
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">hexo-theme-matery       
-🇺🇸English Document | 国内访问示例 (http://blinkfox.com) | Github 部署演示示例 (https://blinkfox.github.io</div>
+                    <div class="summary"></div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-18
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-19
                             </span>
                         <span class="publish-author">
                             
@@ -518,14 +597,6 @@ dawfawfawfawfawf
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/qwe/" target="_blank">
-                        <span class="chip bg-color">qwe</span>
-                    </a>
-                    
                 </div>
                 
             </div>
