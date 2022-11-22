@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="瑞吉总结, 灯子的流浪秃球计划">
     <meta name="description" content="一.MyBatis-Plus1.主键生成雪花算法：@TableId（idType.ASSIGN_ID）@TableId注解用来指定该实体类属性为表主键，默认值为生成雪花算法，AUTO是自增，INSERRT是需要手动添加
-2.字段内容自动填充">
+2.实体类映射对应的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -431,7 +431,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="一-MyBatis-Plus"><a href="#一-MyBatis-Plus" class="headerlink" title="一.MyBatis-Plus"></a>一.MyBatis-Plus</h2><h3 id="1-主键生成雪花算法：-TableId（idType-ASSIGN-ID）"><a href="#1-主键生成雪花算法：-TableId（idType-ASSIGN-ID）" class="headerlink" title="1.主键生成雪花算法：@TableId（idType.ASSIGN_ID）"></a>1.主键生成雪花算法：@TableId（idType.ASSIGN_ID）</h3><p>@TableId注解用来指定该实体类属性为表主键，默认值为生成雪花算法，AUTO是自增，INSERRT是需要手动添加</p>
-<h3 id="2-字段内容自动填充：-TableField-fill-x3D-FieldFill-INSERT"><a href="#2-字段内容自动填充：-TableField-fill-x3D-FieldFill-INSERT" class="headerlink" title="2.字段内容自动填充：@TableField(fill &#x3D; FieldFill_INSERT)"></a>2.字段内容自动填充：@TableField(fill &#x3D; FieldFill_INSERT)</h3><p>实现这个功能需要创建一个组件实现MetaObjectHandler接口，实现insertFill() 和 updateFill（）方法</p>
+<h3 id="2-实体类映射对应的数据库表-TableName-“table-name”"><a href="#2-实体类映射对应的数据库表-TableName-“table-name”" class="headerlink" title="2.实体类映射对应的数据库表: @TableName(“table_name”)"></a>2.实体类映射对应的数据库表: @TableName(“table_name”)</h3><p>当实体类和数据库的表名不同却想映射两者时，使用该注解，参数写上数据库的表名即可完成映射</p>
+<h3 id="3-1-字段内容自动填充：-TableField-fill-x3D-FieldFill-INSERT"><a href="#3-1-字段内容自动填充：-TableField-fill-x3D-FieldFill-INSERT" class="headerlink" title="3.1.字段内容自动填充：@TableField(fill &#x3D; FieldFill_INSERT)"></a>3.1.字段内容自动填充：@TableField(fill &#x3D; FieldFill_INSERT)</h3><p>实现这个功能需要创建一个组件实现MetaObjectHandler接口，实现insertFill() 和 updateFill（）方法</p>
 <pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Override</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertFill</span><span class="token punctuation">(</span>MetaObject metaObject<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"公共字段自动填充[insert]..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -441,7 +442,7 @@
         metaObject<span class="token punctuation">.</span><span class="token function">setValue</span><span class="token punctuation">(</span><span class="token string">"updateUser"</span><span class="token punctuation">,</span>BaseContext<span class="token punctuation">.</span><span class="token function">getCurrentId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="3-乐观锁：-Version"><a href="#3-乐观锁：-Version" class="headerlink" title="3.乐观锁：@Version"></a>3.乐观锁：@Version</h3><p>给表新增一个version字段，实体类属性上添加该注解，sql语句中就会添加where version &#x3D; ？，这样在并发事务时，如果事务A在更新前事务A先执行了，version就会加1，事务A的sql无法匹配条件从而取消本次更新。</p>
+<h3 id="3-2-乐观锁：-Version"><a href="#3-2-乐观锁：-Version" class="headerlink" title="3.2.乐观锁：@Version"></a>3.2.乐观锁：@Version</h3><p>给表新增一个version字段，实体类属性上添加该注解，sql语句中就会添加where version &#x3D; ？，这样在并发事务时，如果事务A在更新前事务A先执行了，version就会加1，事务A的sql无法匹配条件从而取消本次更新。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//旧版本用法</span>
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MybatisPlusConfig</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
@@ -606,27 +607,27 @@
 </code></pre>
 <h2 id="六-Nacos-Feign"><a href="#六-Nacos-Feign" class="headerlink" title="六.Nacos + Feign"></a>六.Nacos + Feign</h2><p>feign能够依照Restful风格帮助快速开发服务间的调用</p>
 <p>使用Feign的前提是服务已经在Nacos中注册</p>
-<pre class=" language-Java"><code class="language-Java">// 导依赖
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-openfeign</artifactId>
-    <scope>provided</scope>
-</dependency>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 导依赖</span>
+<span class="token operator">&lt;</span>dependency<span class="token operator">></span>
+    <span class="token operator">&lt;</span>groupId<span class="token operator">></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
+    <span class="token operator">&lt;</span>artifactId<span class="token operator">></span>spring<span class="token operator">-</span>cloud<span class="token operator">-</span>starter<span class="token operator">-</span>openfeign<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
+    <span class="token operator">&lt;</span>scope<span class="token operator">></span>provided<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
 
-// 创建一个接口
-//指定要调用的服务名，该服务名需要在对应的服务模块的配置文件中配置
-//(spring.application.name=service_cmn)
-@FeignClient("service-cmn") 
-public interface DictFeignClient &#123;
-    // 医院等级的value可能不唯一，所以还需要dictCode
-    @GetMapping("/admin/cmn/dict/getName/&#123;dictCode&#125;/&#123;value&#125;")
-    // 有一点要注意！！！@PathVariable中要指定名称
-    // 在普通类上定义@PatnVariable注解时value值可以不用声明，直接写值就好，但是在Feign接口下使用该注解，则需要显示声明value，否则会报错
-    String getName(@PathVariable("dictCode") String dictCode, @PathVariable("value") String value);
+<span class="token comment" spellcheck="true">// 创建一个接口</span>
+<span class="token comment" spellcheck="true">//指定要调用的服务名，该服务名需要在对应的服务模块的配置文件中配置</span>
+<span class="token comment" spellcheck="true">//(spring.application.name=service_cmn)</span>
+<span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"service-cmn"</span><span class="token punctuation">)</span> 
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">DictFeignClient</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 医院等级的value可能不唯一，所以还需要dictCode</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/admin/cmn/dict/getName/&amp;#123;dictCode&amp;#125;/&amp;#123;value&amp;#125;"</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 有一点要注意！！！@PathVariable中要指定名称</span>
+    <span class="token comment" spellcheck="true">// 在普通类上定义@PatnVariable注解时value值可以不用声明，直接写值就好，但是在Feign接口下使用该注解，则需要显示声明value，否则会报错</span>
+    String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"dictCode"</span><span class="token punctuation">)</span> String dictCode<span class="token punctuation">,</span> <span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"value"</span><span class="token punctuation">)</span> String value<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    @GetMapping("/admin/cmn/dict/getName/&#123;value&#125;")
-    String getName(@PathVariable("value") String value);
-&#125;
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/admin/cmn/dict/getName/&amp;#123;value&amp;#125;"</span><span class="token punctuation">)</span>
+    String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"value"</span><span class="token punctuation">)</span> String value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
         
         
 </code></pre>
@@ -638,12 +639,12 @@ public interface DictFeignClient &#123;
 <h3 id="3-ResponseBody：该注解常置于Controller类上方"><a href="#3-ResponseBody：该注解常置于Controller类上方" class="headerlink" title="3.@ResponseBody：该注解常置于Controller类上方"></a>3.@ResponseBody：该注解常置于Controller类上方</h3><p>​	将方法的返回值写入response的body区，转化为json格式</p>
 <h3 id="4-PathVariable-该注解常用于Get方式进行查询"><a href="#4-PathVariable-该注解常用于Get方式进行查询" class="headerlink" title="4. @PathVariable : 该注解常用于Get方式进行查询"></a>4. @PathVariable : 该注解常用于Get方式进行查询</h3><p>​	后端的RequstMapper路径以参数为{param}形式设置，前后端的请求发送格式为 <a target="_blank" rel="noopener" href="http://xxxxxxx/%7Bparam1%7D/%7Bparam2%7D">http://xxxxxxx/{param1}/{param2}</a> </p>
 <p>​	实际发送的请求格式为<a target="_blank" rel="noopener" href="http://xxxxxxx/param1/param2,%E5%8F%82%E6%95%B0%E4%BC%9A%E8%B7%9F%E5%9C%A8%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84%E4%B8%8A">http://xxxxxxx/param1/param2,参数会跟在请求路径上</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h2 id="八-服务器docker容器连接相关"><a href="#八-服务器docker容器连接相关" class="headerlink" title="八.服务器docker容器连接相关"></a>八.服务器docker容器连接相关</h2><img src="D:/Typora/typora-user-images/image-20221110195741623.png" alt="image-20221110195741623" style="zoom:33%;" />
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h2 id="八-服务器docker容器连接相关"><a href="#八-服务器docker容器连接相关" class="headerlink" title="八.服务器docker容器连接相关"></a>八.服务器docker容器连接相关</h2><img src="../images/image-20221110195741623.png" alt="image-20221110195741623" style="zoom:33%;" />
 
-<img src="D:/Typora/typora-user-images/image-20221110195751126.png" alt="image-20221110195751126" style="zoom:33%;" />
+<img src="../images/image-20221110195751126.png" alt="image-20221110195751126" style="zoom:33%;" />
 
 <p>如果是连接本地虚拟机的只需要设置常规：端口写docker开放的端口，ip写虚拟机的ip</p>
-<p>如果是连接云服务器的虚拟机,常规的ip写localhost（127.0.0.1），SSH写云服务器的账号（root）和密码（Yukino123）(也就是该虚拟机主机的登录用户名和登录密码，可以在阿里云控制台修改)，端口默认22,主机ip写公网的ip，私网无法连接</p>
+<p>如果是连接云服务器的虚拟机,常规的ip写localhost（127.0.0.1），SSH写云服务器的账号（root）和密码（xxxxxxxxx）(也就是该虚拟机主机的登录用户名和登录密码，可以在阿里云控制台修改)，端口默认22,主机ip写公网的ip，私网无法连接</p>
 <p>mysql 127.0.0.1 123456                        redis 127.0.0.1 123456</p>
 <h2 id="九-reggie相关知识点"><a href="#九-reggie相关知识点" class="headerlink" title="九.reggie相关知识点"></a>九.reggie相关知识点</h2><h3 id="1-ThreadLocal类："><a href="#1-ThreadLocal类：" class="headerlink" title="1.ThreadLocal类："></a>1.ThreadLocal类：</h3><h4 id="Ⅰ-内置一个ThreadLocalMap属性，是一个Entry（k-v）-用来存储当前线程的一个变量。对该变量进行线程间的隔离，每个线程都有一个该变量的副本，每个线程只能访问修改各自的变量副本。一般用private-static修饰"><a href="#Ⅰ-内置一个ThreadLocalMap属性，是一个Entry（k-v）-用来存储当前线程的一个变量。对该变量进行线程间的隔离，每个线程都有一个该变量的副本，每个线程只能访问修改各自的变量副本。一般用private-static修饰" class="headerlink" title="Ⅰ.内置一个ThreadLocalMap属性，是一个Entry（k-v）,用来存储当前线程的一个变量。对该变量进行线程间的隔离，每个线程都有一个该变量的副本，每个线程只能访问修改各自的变量副本。一般用private static修饰"></a>Ⅰ.内置一个ThreadLocalMap属性，是一个Entry（k-v）,用来存储当前线程的一个变量。对该变量进行线程间的隔离，每个线程都有一个该变量的副本，每个线程只能访问修改各自的变量副本。一般用private static修饰</h4><h4 id="Ⅱ-使用场景："><a href="#Ⅱ-使用场景：" class="headerlink" title="Ⅱ.使用场景："></a>Ⅱ.使用场景：</h4><h6 id="①每个线程需要有自己单独的实例"><a href="#①每个线程需要有自己单独的实例" class="headerlink" title="①每个线程需要有自己单独的实例"></a>①每个线程需要有自己单独的实例</h6><h5 id="②实例需要在多个方法中共享，但不希望被多个线程间共享，例如存储用户登录的Session信息"><a href="#②实例需要在多个方法中共享，但不希望被多个线程间共享，例如存储用户登录的Session信息" class="headerlink" title="②实例需要在多个方法中共享，但不希望被多个线程间共享，例如存储用户登录的Session信息"></a>②实例需要在多个方法中共享，但不希望被多个线程间共享，例如存储用户登录的Session信息</h5><h3 id="2-异常处理器："><a href="#2-异常处理器：" class="headerlink" title="2.异常处理器："></a>2.异常处理器：</h3><h4 id="ExcepionHandler：用于统一处理抛出的异常，置于自定义方法的上方，注解参数为xxxException-class，表示处理指定的异常，并接收异常在自定义方法中对异常进行处理，自定义方法的参数也为异常类型，用于接收异常。"><a href="#ExcepionHandler：用于统一处理抛出的异常，置于自定义方法的上方，注解参数为xxxException-class，表示处理指定的异常，并接收异常在自定义方法中对异常进行处理，自定义方法的参数也为异常类型，用于接收异常。" class="headerlink" title="@ExcepionHandler：用于统一处理抛出的异常，置于自定义方法的上方，注解参数为xxxException.class，表示处理指定的异常，并接收异常在自定义方法中对异常进行处理，自定义方法的参数也为异常类型，用于接收异常。"></a>@ExcepionHandler：用于统一处理抛出的异常，置于自定义方法的上方，注解参数为xxxException.class，表示处理指定的异常，并接收异常在自定义方法中对异常进行处理，自定义方法的参数也为异常类型，用于接收异常。</h4><h4 id="ControllerAdvice：对Controller的一种增强。用于拦截规则，然后具体你想做更细致的拦截筛选和拦截之后的处理，你自己通过-ExceptionHandler、-InitBinder-或-ModelAttribute这三个注解以及被其注解的方法来自定义。"><a href="#ControllerAdvice：对Controller的一种增强。用于拦截规则，然后具体你想做更细致的拦截筛选和拦截之后的处理，你自己通过-ExceptionHandler、-InitBinder-或-ModelAttribute这三个注解以及被其注解的方法来自定义。" class="headerlink" title="@ControllerAdvice：对Controller的一种增强。用于拦截规则，然后具体你想做更细致的拦截筛选和拦截之后的处理，你自己通过@ExceptionHandler、@InitBinder 或 @ModelAttribute这三个注解以及被其注解的方法来自定义。"></a>@ControllerAdvice：对Controller的一种增强。用于拦截规则，然后具体你想做更细致的拦截筛选和拦截之后的处理，你自己通过<code>@ExceptionHandler</code>、<code>@InitBinder</code> 或 <code>@ModelAttribute</code>这三个注解以及被其注解的方法来自定义。</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//参数annotation表示对添加指定注解的Controller进行拦截</span>
 <span class="token annotation punctuation">@ControllerAdvice</span><span class="token punctuation">(</span>annotations <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>RestController<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> Controller<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
@@ -679,21 +680,36 @@ public interface DictFeignClient &#123;
 </code></pre>
 <h3 id="1-ObjectMapper的常用方法"><a href="#1-ObjectMapper的常用方法" class="headerlink" title="1.ObjectMapper的常用方法"></a>1.ObjectMapper的常用方法</h3><p>​		ObjectMapper.<strong>writeValueAsString</strong>(<strong>Object</strong> obj) ：能够将java对象转为json字符串</p>
 <p>​		ObjectMapper.<strong>readValue</strong>(String,Class&lt;&gt;) ：能够将json字符串转化为指定类的对象</p>
-<h3 id="2-自定义类型转换器"><a href="#2-自定义类型转换器" class="headerlink" title="2.自定义类型转换器"></a>2.自定义类型转换器</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 自定义类JacksonObjectMapper继承ObjectMapper</span>
-SimpleModule simpleModule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleModule</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token comment" spellcheck="true">//反序列化</span>
+<h3 id="2-自定义类型转换器"><a href="#2-自定义类型转换器" class="headerlink" title="2.自定义类型转换器"></a>2.自定义类型转换器</h3><p>先定义一个自定义类型的转换器，然后再扩展mvc的消息转换器</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JacksonObjectMapper</span> <span class="token keyword">extends</span> <span class="token class-name">ObjectMapper</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String DEFAULT_DATE_FORMAT <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String DEFAULT_DATE_TIME_FORMAT <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String DEFAULT_TIME_FORMAT <span class="token operator">=</span> <span class="token string">"HH:mm:ss"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">JacksonObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//收到未知属性时不报异常</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">configure</span><span class="token punctuation">(</span>FAIL_ON_UNKNOWN_PROPERTIES<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//反序列化时，属性不存在的兼容处理</span>
+                           <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getDeserializationConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withoutFeatures</span><span class="token punctuation">(</span>DeserializationFeature<span class="token punctuation">.</span>FAIL_ON_UNKNOWN_PROPERTIES<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        SimpleModule simpleModule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleModule</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addDeserializer</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateTimeDeserializer</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>DEFAULT_DATE_TIME_FORMAT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addDeserializer</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateDeserializer</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>DEFAULT_DATE_FORMAT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addDeserializer</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalTimeDeserializer</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>DEFAULT_TIME_FORMAT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token comment" spellcheck="true">//序列化</span>
+
                 <span class="token punctuation">.</span><span class="token function">addSerializer</span><span class="token punctuation">(</span>BigInteger<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> ToStringSerializer<span class="token punctuation">.</span>instance<span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addSerializer</span><span class="token punctuation">(</span>Long<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> ToStringSerializer<span class="token punctuation">.</span>instance<span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addSerializer</span><span class="token punctuation">(</span>LocalDateTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateTimeSerializer</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>DEFAULT_DATE_TIME_FORMAT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addSerializer</span><span class="token punctuation">(</span>LocalDate<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalDateSerializer</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>DEFAULT_DATE_FORMAT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">addSerializer</span><span class="token punctuation">(</span>LocalTime<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LocalTimeSerializer</span><span class="token punctuation">(</span>DateTimeFormatter<span class="token punctuation">.</span><span class="token function">ofPattern</span><span class="token punctuation">(</span>DEFAULT_TIME_FORMAT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true">//注册功能模块 例如，可以添加自定义序列化器和反序列化器</span>
-JacksonObjectMapper<span class="token punctuation">.</span><span class="token function">registerModule</span><span class="token punctuation">(</span>simpleModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//注册功能模块 例如，可以添加自定义序列化器和反序列化器</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">registerModule</span><span class="token punctuation">(</span>simpleModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 <pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
      * 扩展mvc的消息转换器,自定义类继承WebMvcConfigurationSupport（spring-boot-starter-web包）
@@ -732,8 +748,7 @@ JacksonObjectMapper<span class="token punctuation">.</span><span class="token fu
 <p>​		进行路径的拦截、处理和放行，调用filterChain.doFilter(request,response);放行</p>
 <p>​		调用response.getWriter().write(XXX);向前端返回数据</p>
 <p>​	③destroy()</p>
-<p>​		</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3>
+
             </div>
             <hr/>
 
@@ -829,37 +844,51 @@ Vector扩容2.0
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/17/hello-world/">
+                <a href="/2022/11/17/%E9%A1%B9%E7%9B%AE%E6%B3%A8%E6%84%8F%E7%82%B9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="瑞吉总结">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">瑞吉总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">一.MyBatis-Plus1.主键生成雪花算法：@TableId（idType.ASSIGN_ID）@TableId注解用来指定该实体类属性为表主键，默认值为生成雪花算法，AUTO是自增，INSERRT是需要手动添加
+2.实体类映射对应的</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-17
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            Touko
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Reggie/" class="post-category" target="_blank">
+                                    Reggie
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/course/" target="_blank">
-                        <span class="chip bg-color">course</span>
+                    <a href="/tags/Java/" target="_blank">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/Reggie/" target="_blank">
+                        <span class="chip bg-color">Reggie</span>
+                    </a>
+                    
+                    <a href="/tags/Springboot/" target="_blank">
+                        <span class="chip bg-color">Springboot</span>
                     </a>
                     
                 </div>

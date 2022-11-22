@@ -459,11 +459,11 @@ Spring">
 </blockquote>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 表示这个组件的名字为dict,使用名为“keyGenerator”的key生成器(该生成器需要自行在配置类中创建)</span>
 <span class="token annotation punctuation">@Cacheable</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"dict"</span><span class="token punctuation">,</span> keyGenerator <span class="token operator">=</span> <span class="token string">"keyGenerator"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">// 设置需要缓存的条件，这个写法的意识是当参数id>1时才会缓存返回结果</span>
+<span class="token comment" spellcheck="true">// 设置需要缓存的条件，这个写法的意思是当参数id>1时才会缓存返回结果</span>
 <span class="token annotation punctuation">@Cacheable</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"dict"</span><span class="token punctuation">,</span> keyGenerator <span class="token operator">=</span> <span class="token string">"keyGenerator"</span><span class="token punctuation">,</span>condition <span class="token operator">=</span> <span class="token string">"#id>1"</span><span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true">// 否定缓存。当 unless 指定的条件为 true ，方法的返回值就不会被缓存。id大于1的时候不会缓存</span>
 <span class="token annotation punctuation">@Cacheable</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"dict"</span><span class="token punctuation">,</span> keyGenerator <span class="token operator">=</span> <span class="token string">"keyGenerator"</span><span class="token punctuation">,</span>unless <span class="token operator">=</span> <span class="token string">"#id>1"</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">// sync:是否使用异步模式。默认是false:方法执行完，以同步的方式将方法返回的结果存在缓存中。</span>
+<span class="token comment" spellcheck="true">// sync:是否使用同步模式。默认是false:方法执行完，以同步的方式将方法返回的结果存在缓存中。</span>
 
 
 <span class="token comment" spellcheck="true">/**
@@ -484,6 +484,38 @@ Spring">
             <span class="token keyword">return</span> sb<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
     <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="4-CacheManager"><a href="#4-CacheManager" class="headerlink" title="4.CacheManager"></a>4.CacheManager</h3><p>当方法返回的是对象时，写入redis的对象需要序列化。否则会报错</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 使用RedisCacheManager，设置CacheManager缓存规则</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token keyword">public</span> CacheManager <span class="token function">cacheManager</span><span class="token punctuation">(</span>RedisConnectionFactory factory<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    RedisSerializer<span class="token operator">&lt;</span>String<span class="token operator">></span> redisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringRedisSerializer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Jackson2JsonRedisSerializer jackson2JsonRedisSerializer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonRedisSerializer</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//解决查询缓存转换异常的问题</span>
+    ObjectMapper om <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectMapper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    om<span class="token punctuation">.</span><span class="token function">setVisibility</span><span class="token punctuation">(</span>PropertyAccessor<span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> JsonAutoDetect<span class="token punctuation">.</span>Visibility<span class="token punctuation">.</span>ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    om<span class="token punctuation">.</span><span class="token function">enableDefaultTyping</span><span class="token punctuation">(</span>ObjectMapper<span class="token punctuation">.</span>DefaultTyping<span class="token punctuation">.</span>NON_FINAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    jackson2JsonRedisSerializer<span class="token punctuation">.</span><span class="token function">setObjectMapper</span><span class="token punctuation">(</span>om<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//设置key value的序列化方式</span>
+    <span class="token comment" spellcheck="true">// 设置key为String</span>
+    RedisCacheConfiguration config <span class="token operator">=</span> RedisCacheConfiguration<span class="token punctuation">.</span><span class="token function">defaultCacheConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">//设置key为String</span>
+      <span class="token punctuation">.</span><span class="token function">serializeKeysWith</span><span class="token punctuation">(</span>RedisSerializationContext<span class="token punctuation">.</span>SerializationPair<span class="token punctuation">.</span><span class="token function">fromSerializer</span><span class="token punctuation">(</span>redisSerializer<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">// 设置value 为自动转Json的Object        </span>
+        <span class="token punctuation">.</span><span class="token function">serializeValuesWith</span><span class="token punctuation">(</span>RedisSerializationContext<span class="token punctuation">.</span>SerializationPair<span class="token punctuation">.</span><span class="token function">fromSerializer</span><span class="token punctuation">(</span>jackson2JsonRedisSerializer<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">//设置缓存过期时间为600秒</span>
+        <span class="token punctuation">.</span><span class="token function">entryTtl</span><span class="token punctuation">(</span>Duration<span class="token punctuation">.</span><span class="token function">ofSeconds</span><span class="token punctuation">(</span><span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+        <span class="token comment" spellcheck="true">//设置为不缓存null</span>
+        <span class="token punctuation">.</span><span class="token function">disableCachingNullValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment" spellcheck="true">// 配置redis缓存管理器</span>
+    RedisCacheManager cacheManager <span class="token operator">=</span> RedisCacheManager<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span>factory<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">cacheDefaults</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> cacheManager<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 

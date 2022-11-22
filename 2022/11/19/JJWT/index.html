@@ -419,7 +419,7 @@
             <div id="articleContent">
                 <h2 id="一-作用"><a href="#一-作用" class="headerlink" title="一.作用"></a>一.作用</h2><p>1.<strong>授权</strong>： 这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单一登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用</p>
 <p>2.<strong>支持跨域访问</strong>:Cookie是不允许垮域访问的，这一点对Token机制是不存在的，前提是传输的用户认证信息通过HTTP头传输.</p>
-<p>3.**去耦:**不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可</p>
+<p>3.<strong>去耦</strong>:不需要绑定到一个特定的身份验证方案。Token可以在任何地方生成，只要在你的API被调用的时候，你可以进行Token生成调用即可</p>
 <h2 id="二-组成"><a href="#二-组成" class="headerlink" title="二.组成"></a>二.组成</h2><p>一个JWT实际上就是一个字符串，它由三部分组成：头部、载荷与签名。格式为： XXXX.XXXX.XXXX</p>
 <h5 id="2-1头部-header-用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象"><a href="#2-1头部-header-用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象" class="headerlink" title="2.1头部(header)用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象"></a>2.1头部(header)用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等，头部可以被表示成一个JSON对象</h5><blockquote>
 <pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span><span class="token property">"typ"</span><span class="token operator">:</span><span class="token string">"JWT"</span><span class="token punctuation">,</span><span class="token property">"alg"</span><span class="token operator">:</span><span class="token string">"HS256"</span>&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
@@ -465,6 +465,7 @@ jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重
         <span class="token punctuation">.</span><span class="token function">claim</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">,</span> userId<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//用户相关信息的声明</span>
         <span class="token punctuation">.</span><span class="token function">claim</span><span class="token punctuation">(</span><span class="token string">"userName"</span><span class="token punctuation">,</span> userName<span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">compact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//开始压缩为xxxxx.yyyyy.zzzzz 格式的jwt token</span>
+    <span class="token keyword">return</span> token<span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// 根据token 获取userId</span>
