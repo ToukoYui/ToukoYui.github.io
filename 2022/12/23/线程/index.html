@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Gateway网关, 灯子的流浪秃球计划">
-    <meta name="description" content="1.Gateway解决跨域问题配置CorsWebFilter
-@Configuration
-public class CrossConfig &amp;amp;#123;
-    @Bean
-    public CorsWebFilter cor">
+    <meta name="keywords" content="灯子的流浪秃球计划">
+    <meta name="description" content="一、进程：正在运行的程序。是程序的一次执行过程，或是正在运行的程序
+二、线程进程的一个实体，一个进程可以拥有多个线程
+单线程：同一个时刻，只允许执行一个线程
+多线程：同一个时刻，允许执行多个线程
+并发：同一时刻，多个任务交替执行，单核CPU">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@ public class CrossConfig &amp;amp;#123;
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Gateway网关 | 灯子的流浪秃球计划</title>
+    <title>灯子的流浪秃球计划</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -293,7 +293,7 @@ public class CrossConfig &amp;amp;#123;
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Gateway网关
+                        
                     </div>
                 </div>
             </div>
@@ -383,33 +383,12 @@ public class CrossConfig &amp;amp;#123;
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Java/" target="_blank">
-                                <span class="chip bg-color">Java</span>
-                            </a>
-                        
-                            <a href="/tags/Springboot/" target="_blank">
-                                <span class="chip bg-color">Springboot</span>
-                            </a>
-                        
-                            <a href="/tags/gateway/" target="_blank">
-                                <span class="chip bg-color">gateway</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E7%BD%91%E5%85%B3/" class="post-category" target="_blank">
-                                网关
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -417,7 +396,7 @@ public class CrossConfig &amp;amp;#123;
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-11-24
+                    2022-12-23
                 </div>
 
                 
@@ -433,72 +412,75 @@ public class CrossConfig &amp;amp;#123;
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-Gateway解决跨域问题"><a href="#1-Gateway解决跨域问题" class="headerlink" title="1.Gateway解决跨域问题"></a>1.Gateway解决跨域问题</h2><p>配置CorsWebFilter</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CrossConfig</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> CorsWebFilter <span class="token function">corsWebFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 创建跨域配置器</span>
-        CorsConfiguration corsConfiguration <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CorsConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 设置允许所有请求头</span>
-        corsConfiguration<span class="token punctuation">.</span><span class="token function">addAllowedHeader</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 设置允许所有域名 （如：http://localhost:8080）</span>
-        corsConfiguration<span class="token punctuation">.</span><span class="token function">addAllowedOrigin</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 设置允许所有请求方法 ==> GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</span>
-        corsConfiguration<span class="token punctuation">.</span><span class="token function">addAllowedMethod</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// URL 映射 （如： /admin/**），允许所有路径请求进行跨域</span>
-        UrlBasedCorsConfigurationSource source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UrlBasedCorsConfigurationSource</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PathPatternParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        source<span class="token punctuation">.</span><span class="token function">registerCorsConfiguration</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">,</span>corsConfiguration<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">CorsWebFilter</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
-<p>配置文件application.properties</p>
-<pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true">#设置路由id，自定义，唯一即可</span>
-<span class="token attr-name">spring.cloud.gateway.routes[0].id</span><span class="token punctuation">=</span><span class="token attr-value">service-cmn</span>
-<span class="token comment" spellcheck="true">#设置路由的uri,注册中心配置方式：lb是负载均衡，后面跟服务名称</span>
-<span class="token attr-name">spring.cloud.gateway.routes[0].uri</span><span class="token punctuation">=</span><span class="token attr-value">lb://service-cmn</span>
-<span class="token comment" spellcheck="true">#设置路由断言,判断请求是否符合路由规则的条件</span>
-<span class="token attr-name">spring.cloud.gateway.routes[0].predicates</span><span class="token punctuation">=</span> <span class="token attr-value">Path=/*/cmn/**</span>
-</code></pre>
-<h2 id="2-全局过滤器GlobalFilter"><a href="#2-全局过滤器GlobalFilter" class="headerlink" title="2.全局过滤器GlobalFilter"></a>2.全局过滤器GlobalFilter</h2><p>处理一切进入网关的请求和微服务响应，需要自己写代码配置</p>
-<p>通过全局过滤器可以实现对权限的统一校验，安全性验证等功能。</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 自定义配置类实现GlobalFilter接口，实现内部抽象方法：Mono&lt;Void> filter</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Filter</span> <span class="token keyword">implements</span> <span class="token class-name">GlobalFilter</span><span class="token punctuation">,</span> Ordered <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 路径匹配器</span>
-    <span class="token keyword">private</span> AntPathMatcher antPathMatcher <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AntPathMatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h2 id="一、进程："><a href="#一、进程：" class="headerlink" title="一、进程："></a>一、<strong>进程：</strong></h2><p><strong>正在运行的程序</strong>。是程序的一次执行过程，或是正在运行的程序</p>
+<h2 id="二、线程"><a href="#二、线程" class="headerlink" title="二、线程"></a>二、线程</h2><p><strong>进程的一个实体</strong>，一个进程可以拥有多个线程</p>
+<p>单线程：同一个时刻，只允许执行一个线程</p>
+<p>多线程：同一个时刻，允许执行多个线程</p>
+<p>并发：同一时刻，多个任务交替执行，单核CPU实现的多任务就是并发</p>
+<p>并行：同一时刻，多个任务同时执行，多核CPU可以实现并行</p>
+<h2 id="三、线程的创建和运行"><a href="#三、线程的创建和运行" class="headerlink" title="三、线程的创建和运行"></a>三、线程的创建和运行</h2><img src="../images/image-20221223212127890.png" alt="image-20221223212127890" style="zoom: 50%;" />
 
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Mono<span class="token operator">&lt;</span>Void<span class="token operator">></span> <span class="token function">filter</span><span class="token punctuation">(</span>ServerWebExchange exchange<span class="token punctuation">,</span> GatewayFilterChain chain<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-         <span class="token comment" spellcheck="true">// 通过交换机获取请求体的请求路径</span>
-        ServerHttpRequest request <span class="token operator">=</span> exchange<span class="token punctuation">.</span><span class="token function">getRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String path <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"==="</span><span class="token operator">+</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//内部服务接口，不允许外部访问</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>antPathMatcher<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token string">"/**/inner/**"</span><span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            ServerHttpResponse response <span class="token operator">=</span> exchange<span class="token punctuation">.</span><span class="token function">getResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            response<span class="token punctuation">.</span><span class="token function">setStatusCode</span><span class="token punctuation">(</span>HttpStatus<span class="token punctuation">.</span>XXXX<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">setComplete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token keyword">else</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> chain<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>exchange<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//放行</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-</code></pre>
+<h3 id="1-继承Thread类"><a href="#1-继承Thread类" class="headerlink" title="1.继承Thread类"></a>1.继承Thread类</h3><p>自定义一个类classXX继承Thread类，重写Thread的run()方法（准确的说是实现Runnable接口的抽象方法run（），因为Thread实现了Runnable接口），在run方法中写自己的业务代码。开启线程需要new一个classXX然后调用该类的start方法。</p>
+<p><img src="/../images/image-20221223203947669.png" alt="image-20221223203947669"></p>
+<p>当运行程序main主函数时会开一个进程，这个进程会开一个主线程，程序就会在该线程下执行。</p>
+<p>但如果在主线程下开一个子线程，主子线程是异步的，不管主从其中一个线程结束后进程不会结束，只有所以线程都结束了进程才会结束。</p>
 <blockquote>
-<p>关于过滤器优先级的问题</p>
-<p>一种方法是在类上添加@Order(int val)注解，val越小优先级越高</p>
-<p>另一种方法是实现GlobalFilter的同时也实现Ordered接口，实现该接口的int getOrder();方法(return 一个值就行了)</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Ordered</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> HIGHEST_PRECEDENCE <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2147483648</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> LOWEST_PRECEDENCE <span class="token operator">=</span> <span class="token number">2147483647</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">int</span> <span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p>为何要使用start方法而不直接调用run方法开启线程？</p>
+<p>答：因为run方法本身就是一个普通方法，直接调用run方法不会真正的开启一个新的线程，会等到run方法执行结束后才会向下执行。此时调用该方法的线程是main线程，不会是Thread-X线程。</p>
+<p>start方法的底层？</p>
+<p>start方法内部调用了start0（），是个native修饰的本地方法由JVM调用，可以理解为JVM通过该方法的底层逻辑启动多线程调用run方法</p>
+</blockquote>
+<h3 id="2-实现Runnable接口"><a href="#2-实现Runnable接口" class="headerlink" title="2.实现Runnable接口"></a>2.实现Runnable接口</h3><p>由于Java是单继承的，当一个类已经继承了他的父类就无法通过继承Thread类来操作了，所以此时可以实现Runnable接口。</p>
+<p>自定义类classXX，实现Runnable接口，重写run方法</p>
+<p>然后在别类中new个Thread，Thread thread &#x3D; new Thread(classXX)，由于Runnable接口没有start方法，所以需要通过静态代理的方法让Thread类帮我们调用start方法创建新线程执行run方法。</p>
+<blockquote>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/* Thread类的静态代理
+    通过Thread thread = new Thread(classXX)将classXX赋值给target，
+    thread.start()->start0()JVM内部创建新线程调用Thread类的run，该run里最终调用回classXX的run方法
+*/</span>
+<span class="token keyword">private</span> Runnable target<span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token function">Thread</span><span class="token punctuation">(</span>Runnable target<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">(</span>null<span class="token punctuation">,</span> target<span class="token punctuation">,</span> <span class="token string">"Thread-"</span> <span class="token operator">+</span> <span class="token function">nextThreadNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        target<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
 </code></pre>
 </blockquote>
+<p><img src="/../images/image-20221223225536642.png" alt="image-20221223225536642"></p>
+<h2 id="四、线程的终止"><a href="#四、线程的终止" class="headerlink" title="四、线程的终止"></a>四、线程的终止</h2><p><img src="/../images/image-20221223232506986.png" alt="image-20221223232506986"></p>
+<p>自己给循环条件loop设置一个能够外部修改loop的setLoop方法，满足终止条件后调用setLoop方法将线程里的loop修改为false中止。</p>
+<h2 id="五、线程常用方法"><a href="#五、线程常用方法" class="headerlink" title="五、线程常用方法"></a>五、线程常用方法</h2><p><img src="/../images/image-20221225003727676.png" alt="image-20221225003727676"></p>
+<p><img src="/../images/image-20221225003926309.png" alt="image-20221225003926309"></p>
+<p><img src="/../images/image-20221225004448211.png" alt="image-20221225004448211"></p>
+<h2 id="六、线程的生命周期"><a href="#六、线程的生命周期" class="headerlink" title="六、线程的生命周期"></a>六、线程的生命周期</h2><p><img src="/../images/image-20221225004627787.png" alt="image-20221225004627787"></p>
+<blockquote>
+<p>其中Runnable状态可细分为 Ready 和 Running状态</p>
+<p>当new了一个线程对象该线程就处于NEW状态</p>
+<p>调用sleep休眠方法会使线程进入Timed_Waiting状态</p>
+</blockquote>
+<p><img src="/../images/image-20221225004937978.png" alt="image-20221225004937978"></p>
+<h2 id="七、线程的同步和异步"><a href="#七、线程的同步和异步" class="headerlink" title="七、线程的同步和异步"></a>七、线程的同步和异步</h2><p><img src="/../images/image-20221225132745738.png" alt="image-20221225132745738"></p>
+<p><img src="/../images/image-20221225132812415.png" alt="image-20221225132812415"></p>
+<p><img src="/../images/image-20221225140754583.png" alt="image-20221225140754583"></p>
+<p><img src="/../images/image-20221225141750152.png" alt="image-20221225141750152"></p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//在静态方法中实现同步代码块</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span>  <span class="token keyword">void</span> <span class="token function">m1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">synchronized</span><span class="token punctuation">(</span>类名<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//因为静态方法是属于类本身的，所以上的锁对象是该类</span>
+        
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//非静态方法</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">m2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">synchronized</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//上锁的对象是调用该方法的实例对象，所以用this</span>
+        
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
 
             </div>
             <hr/>
@@ -522,7 +504,7 @@ public class CrossConfig &amp;amp;#123;
                     </span>
                     <a href="http://example.com" class="b-link-green">灯子的流浪秃球计划</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2022/11/24/Gateway%E7%BD%91%E5%85%B3/" class="b-link-green">Gateway网关</a>
+                    <a href="/2022/12/23/%E7%BA%BF%E7%A8%8B/" class="b-link-green"></a>
                 </p>
             </div>
         </div>
@@ -543,9 +525,10 @@ public class CrossConfig &amp;amp;#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/12/23/%E7%BA%BF%E7%A8%8B/">
                     <div class="card-image">
@@ -563,9 +546,9 @@ public class CrossConfig &amp;amp;#123;
 多线程：同一个时刻，允许执行多个线程
 并发：同一时刻，多个任务交替执行，单核CPU</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-12-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-12-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -574,6 +557,7 @@ public class CrossConfig &amp;amp;#123;
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -584,27 +568,33 @@ public class CrossConfig &amp;amp;#123;
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/19/Spring%20Cache+Redis%20%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE/">
+                <a href="/2022/11/24/Gateway%E7%BD%91%E5%85%B3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="缓存数据">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Gateway网关">
                         
-                        <span class="card-title">缓存数据</span>
+                        <span class="card-title">Gateway网关</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">一.作用Spring Cache 是一个非常优秀的缓存组件。自Spring 3.1起，提供了类似于@Transactional注解事务的注解Cache支持，且提供了Cache抽象，方便切换各种底层Cache（如：Redis）
-
-Spring</div>
+                    <div class="summary">1.Gateway解决跨域问题配置CorsWebFilter
+@Configuration
+public class CrossConfig &amp;#123;
+    @Bean
+    public CorsWebFilter cor</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-19
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-11-24
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            Touko
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E5%85%B3/" class="post-category" target="_blank">
+                                    网关
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -620,8 +610,8 @@ Spring</div>
                         <span class="chip bg-color">Springboot</span>
                     </a>
                     
-                    <a href="/tags/Redis/" target="_blank">
-                        <span class="chip bg-color">Redis</span>
+                    <a href="/tags/gateway/" target="_blank">
+                        <span class="chip bg-color">gateway</span>
                     </a>
                     
                 </div>
